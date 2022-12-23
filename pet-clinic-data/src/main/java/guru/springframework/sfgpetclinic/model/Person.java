@@ -1,23 +1,34 @@
 package guru.springframework.sfgpetclinic.model;
 
-public class Person {
-    private String firstName;
+import jakarta.persistence.Column;
+import jakarta.persistence.MappedSuperclass;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-    private String lastName;
 
-    public String getFirstName() {
-        return firstName;
-    }
+/**
+ * Created by jt on 7/13/18.
+ */
 
-    public void setFirstName(String firstName) {
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@MappedSuperclass
+public class Person extends BaseEntity {
+
+    public Person(Long id, String firstName, String lastName) {
+        super(id);
         this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+
 }
